@@ -29,6 +29,13 @@
         <dep.asm.version>9.0</dep.asm.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+
     <modules>
         <module>qinsql-spi</module>
         <module>qinsql-array</module>
@@ -46,6 +53,7 @@
         <module>qinsql-function-namespace-managers</module>
         <module>qinsql-expressions</module>
         <module>qinsql-common</module>
+        <module>qinsql-engine</module>
         <module>qinsql-testng-services</module>
     </modules>
 
