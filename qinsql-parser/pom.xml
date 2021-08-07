@@ -13,10 +13,6 @@
     <version>0.259-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <properties>
-        <air.main.basedir>${project.parent.basedir}</air.main.basedir>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>javax.inject</groupId>

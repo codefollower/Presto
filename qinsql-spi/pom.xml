@@ -18,7 +18,6 @@
         <dependency>
             <groupId>org.lealone.qinsql</groupId>
             <artifactId>qinsql-common</artifactId>
-            <version>${project.version}</version>
         </dependency>
 
         <dependency>

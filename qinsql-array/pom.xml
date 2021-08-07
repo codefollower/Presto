@@ -13,11 +13,12 @@
     <version>0.259-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <properties>
-        <air.main.basedir>${project.parent.basedir}</air.main.basedir>
-    </properties>
-
     <dependencies>
+        <dependency>
+            <groupId>org.lealone.qinsql</groupId>
+            <artifactId>qinsql-common</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>io.airlift</groupId>
             <artifactId>slice</artifactId>
@@ -26,11 +27,6 @@
         <dependency>
             <groupId>it.unimi.dsi</groupId>
             <artifactId>fastutil</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.lealone.qinsql</groupId>
-            <artifactId>qinsql-common</artifactId>
         </dependency>
 
         <dependency>

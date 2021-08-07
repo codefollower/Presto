@@ -13,16 +13,7 @@
     <version>0.259-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <properties>
-        <air.main.basedir>${project.parent.basedir}</air.main.basedir>
-    </properties>
-
     <dependencies>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.lealone.qinsql</groupId>
             <artifactId>qinsql-spi</artifactId>
@@ -31,6 +22,11 @@
         <dependency>
             <groupId>org.lealone.qinsql</groupId>
             <artifactId>qinsql-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
 
         <dependency>
