@@ -54,6 +54,7 @@
         <module>qinsql-expressions</module>
         <module>qinsql-common</module>
         <module>qinsql-engine</module>
+        <module>qinsql-test</module>
         <module>qinsql-testng-services</module>
     </modules>
 

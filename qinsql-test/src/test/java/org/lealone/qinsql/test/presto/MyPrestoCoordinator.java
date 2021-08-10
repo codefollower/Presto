@@ -11,8 +11,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package my.test;
+package org.lealone.qinsql.test.presto;
 
-public class MyPrestoWorker3 {
+import com.facebook.presto.server.PrestoServer;
+
+public class MyPrestoCoordinator {
+
+    public static void main(String[] args) {
+        new PrestoServer().run();
+    }
 
 }

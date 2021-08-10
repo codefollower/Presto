@@ -15,20 +15,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lealone.bats.test;
+package org.lealone.qinsql.test.start;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.lealone.storage.fs.FileUtils;
-
-public class DeleteTestData {
-
-    public static void main(String[] args) throws IOException {
-        FileUtils.deleteRecursive(TestBase.TEST_BASE_DIR, true);
-        if (!FileUtils.exists(TestBase.TEST_BASE_DIR)) {
-            System.out.println("dir '" + new File(TestBase.TEST_BASE_DIR).getCanonicalPath() + "' deleted");
-        }
+public class OneDCNode3 extends OneDCNodeBase {
+    public static void main(String[] args) {
+        run(OneDCNode3.class, args);
     }
 
+    public OneDCNode3() {
+        this.listen_address = "127.0.0.3";
+        this.dir = "node3";
+    }
 }

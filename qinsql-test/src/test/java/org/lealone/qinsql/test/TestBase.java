@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lealone.bats.test;
+package org.lealone.qinsql.test;
 
 import java.io.File;
 import java.sql.Connection;

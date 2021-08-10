@@ -15,15 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lealone.bats.test.start;
+package org.lealone.qinsql.test.start;
 
-public class OneDCNode3 extends OneDCNodeBase {
-    public static void main(String[] args) {
-        run(OneDCNode3.class, args);
-    }
-
-    public OneDCNode3() {
-        this.listen_address = "127.0.0.3";
-        this.dir = "node3";
+public class OneDCNodeBase extends NodeBase {
+    public OneDCNodeBase() {
+        nodeBaseDirPrefix = "cluster/onedc-";
     }
 }
