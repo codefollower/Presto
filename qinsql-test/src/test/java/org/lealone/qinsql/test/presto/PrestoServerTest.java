@@ -42,6 +42,6 @@ public class PrestoServerTest {
         properties.put("http-server.http.port", "51449");
         TestingPrestoServer server = new TestingPrestoServer(false, false, true, properties, null, null,
                 new SqlParserOptions(), ImmutableList.of(), Optional.empty());
-        server.close();
+        // server.close();
     }
 }

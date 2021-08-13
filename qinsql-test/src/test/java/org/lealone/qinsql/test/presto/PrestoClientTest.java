@@ -40,16 +40,21 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import com.facebook.airlift.http.client.HttpClient;
+import com.facebook.airlift.http.client.HttpClientConfig;
 import com.facebook.airlift.http.client.HttpUriBuilder;
 import com.facebook.airlift.http.client.Request;
 import com.facebook.airlift.http.client.jetty.JettyHttpClient;
 import com.facebook.airlift.json.JsonCodec;
+import com.facebook.presto.SystemSessionProperties;
 import com.facebook.presto.client.QueryResults;
 import com.facebook.presto.spi.function.SqlFunctionId;
 import com.facebook.presto.spi.function.SqlInvokedFunction;
 import com.google.common.collect.ImmutableList;
+
+import io.airlift.units.Duration;
 
 public class PrestoClientTest {
 
@@ -74,7 +79,9 @@ public class PrestoClientTest {
     }
 
     public static void main(String[] args) throws URISyntaxException, Exception {
-        HttpClient client = new JettyHttpClient();// start query
+        HttpClientConfig config = new HttpClientConfig();
+        config.setIdleTimeout(new Duration(1, TimeUnit.DAYS));
+        HttpClient client = new JettyHttpClient(config);// start query
         Request request = preparePost().setUri(uriFor("/v1/statement"))
                 .setBodyGenerator(createStaticBodyGenerator("show catalogs", UTF_8)).setHeader(PRESTO_USER, "user")
                 .setHeader(PRESTO_SOURCE, "source").setHeader(PRESTO_CATALOG, "catalog")
@@ -82,9 +89,10 @@ public class PrestoClientTest {
                 .addHeader(PRESTO_SESSION, QUERY_MAX_MEMORY + "=1GB")
                 .addHeader(PRESTO_SESSION, JOIN_DISTRIBUTION_TYPE + "=partitioned," + HASH_PARTITION_COUNT + " = 43")
                 .addHeader(PRESTO_PREPARED_STATEMENT, "foo=select * from bar")
-                .addHeader(PRESTO_SESSION_FUNCTION, format("%s=%s", urlEncode(SERIALIZED_SQL_FUNCTION_ID_ADD),
-                        urlEncode(SERIALIZED_SQL_FUNCTION_ADD)))
-                .build();
+                .addHeader(PRESTO_SESSION_FUNCTION,
+                        format("%s=%s", urlEncode(SERIALIZED_SQL_FUNCTION_ID_ADD),
+                                urlEncode(SERIALIZED_SQL_FUNCTION_ADD)))
+                .setHeader(SystemSessionProperties.USE_LEGACY_SCHEDULER, "false").build();
 
         QueryResults queryResults = client.execute(request, createJsonResponseHandler(QUERY_RESULTS_CODEC));
 
