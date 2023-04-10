@@ -15,15 +15,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lealone.qinsql.test.start;
+package org.qinsql.engine.sql;
 
-public class OneDCNode3 extends OneDCNodeBase {
-    public static void main(String[] args) {
-        run(OneDCNode3.class, args);
+import org.lealone.db.session.ServerSession;
+import org.lealone.sql.LealoneSQLParser;
+import org.lealone.sql.StatementBase;
+
+public class QinSQLParser extends LealoneSQLParser {
+
+    public QinSQLParser(ServerSession session) {
+        super(session);
     }
 
-    public OneDCNode3() {
-        this.listen_address = "127.0.0.3";
-        this.dir = "node3";
+    @Override
+    public StatementBase parse(String sql) {
+        return super.parse(sql);
     }
 }

@@ -15,17 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lealone.qinsql.engine.sql;
-
-import java.util.Map;
+package org.qinsql.engine.sql;
 
 import org.lealone.db.CommandParameter;
+import org.lealone.db.PluginBase;
 import org.lealone.db.schema.Sequence;
 import org.lealone.db.session.ServerSession;
 import org.lealone.db.session.Session;
 import org.lealone.db.value.Value;
 import org.lealone.sql.IExpression;
-import org.lealone.sql.Parser;
+import org.lealone.sql.LealoneSQLParser;
 import org.lealone.sql.SQLEngine;
 import org.lealone.sql.SQLParser;
 import org.lealone.sql.expression.Parameter;
@@ -33,11 +32,12 @@ import org.lealone.sql.expression.SequenceValue;
 import org.lealone.sql.expression.ValueExpression;
 import org.lealone.sql.expression.condition.ConditionAndOr;
 
-public class QinSQLEngine implements SQLEngine {
+public class QinSQLEngine extends PluginBase implements SQLEngine {
 
     public static final String NAME = "QinSQL";
 
     public QinSQLEngine() {
+        super(NAME);
     }
 
     @Override
@@ -46,17 +46,8 @@ public class QinSQLEngine implements SQLEngine {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public void init(Map<String, String> config) {
-    }
-
-    @Override
     public String quoteIdentifier(String identifier) {
-        return Parser.quoteIdentifier(identifier);
+        return LealoneSQLParser.quoteIdentifier(identifier);
     }
 
     @Override
@@ -77,10 +68,7 @@ public class QinSQLEngine implements SQLEngine {
     @Override
     public IExpression createConditionAndOr(boolean and, IExpression left, IExpression right) {
         return new ConditionAndOr(and ? ConditionAndOr.AND : ConditionAndOr.OR,
-                (org.lealone.sql.expression.Expression) left, (org.lealone.sql.expression.Expression) right);
-    }
-
-    @Override
-    public void close() {
+                (org.lealone.sql.expression.Expression) left,
+                (org.lealone.sql.expression.Expression) right);
     }
 }

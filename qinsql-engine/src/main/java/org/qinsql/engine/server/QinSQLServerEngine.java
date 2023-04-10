@@ -15,13 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lealone.qinsql.engine.server;
+package org.qinsql.engine.server;
 
 import java.util.Map;
 
-import org.lealone.qinsql.engine.sql.QinSQLEngine;
 import org.lealone.server.ProtocolServer;
 import org.lealone.server.ProtocolServerEngineBase;
+import org.qinsql.engine.sql.QinSQLEngine;
 
 public class QinSQLServerEngine extends ProtocolServerEngineBase {
 

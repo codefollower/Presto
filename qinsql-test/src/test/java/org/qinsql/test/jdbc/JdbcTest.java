@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.lealone.qinsql.test.jdbc;
+package org.qinsql.test.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,8 +27,8 @@ import org.lealone.db.Constants;
 public class JdbcTest {
 
     public static void main(String[] args) throws Exception {
-        Connection conn = DriverManager
-                .getConnection("jdbc:lealone:tcp://localhost:" + Constants.DEFAULT_TCP_PORT + "/lealone", "root", "");
+        String url = "jdbc:lealone:tcp://localhost:" + Constants.DEFAULT_TCP_PORT + "/lealone";
+        Connection conn = DriverManager.getConnection(url, "root", "");
         Statement stmt = conn.createStatement();
         init(stmt);
 
